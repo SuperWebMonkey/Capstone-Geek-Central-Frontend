@@ -7,7 +7,7 @@ function Navbar({ itemCount }) {
   };
 
   return (
-    // <!-- Navbar -->
+    // Navbar
     <div id="navbar">
       <div className="logo">
         <Link to="/">
@@ -15,7 +15,7 @@ function Navbar({ itemCount }) {
         </Link>
       </div>
       <Link to="/" className="page tech-shop">
-        Digi World
+        Geek Central
       </Link>
       <Link to="#" className="page login" style={linkStyle}>
         login

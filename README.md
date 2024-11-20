@@ -1,7 +1,7 @@
 ## Geek Central Frontend
 
-Website that a list of digimons. Users can search for specific digimons and add
-them to their cart.
+Front facing portion of the website built with React and Vite. A mock tech store where users
+can buy different categories of items.
 
 ## Live Site
 
@@ -11,26 +11,29 @@ You can view the live version of the site at netlify:
 # requirements
 
 1. an ide to run it (vscode highly recommended)
-2. postman or vscode postman (highly recommended)
+2. Node (required)
+3. git clone the backend portion of the project:
+   https://github.com/SuperWebMonkey/Capstone-Geek-Central-Backend.git
+4. Backend portion must run first
 
 ## Installation
 
-1. git clone https://github.com/SuperWebMonkey/SBA-320H-React-Digimon-World.git
-2. cd SBA-320H-React-Digimon-World
+1. git clone https://github.com/SuperWebMonkey/Capstone-Geek-Central-Frontend.git
+2. cd Capstone-Geek-Central-Frontend
 3. npm install
 4. npm run dev
 
 ## Features
 
-- Fetches data from a digimon api
-- Users can search for a specific digimon
-- Users can add the digimon to their cart
+- Select items
+- Items go to the cart
+- Buy the items from the cart
 
 ## Approach Taken
 
 1. **Frontend Development:**
 
-   - The frontend is built using React.js to create a fast website that loads data from the digimon api
+   - The frontend is built using React.js to create a fast website that loads data from the an api I built
 
 2. **Deployment:**
    - The react app will be deployed through netlify
@@ -48,5 +51,4 @@ You can view the live version of the site at netlify:
 
 ## Issues that need to be fixed
 
-- Style cart page
-- Fix the item counter
+- TBD
