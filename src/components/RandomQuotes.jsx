@@ -4,6 +4,8 @@
  *  Source/Docs of the quote api: https://docs.zenquotes.io/zenquotes-documentation/#api-structure
  *  Hopefully fullfills the api requirement for the project
  *
+ *  problems: May need to get an api key from zenquotes
+ *
  */
 
 import React, { useState, useEffect } from "react";
@@ -17,7 +19,8 @@ function RandomQuote() {
 
   // Uses axios to get a random quote from the zenquote api
   const getQuote = async () => {
-    const api_quote_url = "https://zenquotes.io/api/random";
+    const cors_url = "https://cors-anywhere.herokuapp.com/"; // for testing purposes, not recommended for production
+    const api_quote_url = `${cors_url}https://zenquotes.io/api/random`;
     try {
       setLoading(true);
       setError(null);
