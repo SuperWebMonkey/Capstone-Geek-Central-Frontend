@@ -4,6 +4,7 @@ import "./App.css";
 import HomePage from "./pages/HomePage.jsx";
 import Navbar from "./components/Navbar.jsx";
 import Footer from "./components/Footer.jsx";
+import Cart from "./components/Cart.jsx";
 
 function App() {
   return (
