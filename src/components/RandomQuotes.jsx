@@ -1,17 +1,21 @@
 /**
+ *
  *  Component that gets a random quote from the zenquote api
  *  Source/Docs of the quote api: https://docs.zenquotes.io/zenquotes-documentation/#api-structure
+ *  Hopefully fullfills the api requirement for the project
  *
  */
 
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "../styles/RandomQuote.css";
 
-function Quotes() {
+function RandomQuote() {
   const [quote, setQuote] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // Uses axios to get a random quote from the zenquote api
   const getQuote = async () => {
     const api_quote_url = "https://zenquotes.io/api/random";
     try {
@@ -40,12 +44,12 @@ function Quotes() {
         <p>{error}</p>
       ) : (
         <div className="quote-card">
-          <p className="author">- {quote.a}</p> {/* Display the author */}
-          <p className="-famous-quote">"{quote.q}"</p> {/* Display the quote */}
+          <p className="author">{quote.a}</p> {/* Author */}
+          <p className="famous-quote">" - {quote.q}"</p> {/* Quote */}
         </div>
       )}
     </div>
   );
 }
 
-export default Quotes;
+export default RandomQuote;

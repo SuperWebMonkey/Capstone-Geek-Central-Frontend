@@ -11,7 +11,7 @@ function Navbar({ itemCount }) {
     <div id="navbar">
       <div className="logo">
         <Link to="/">
-          <img id="logo-pic" src={logo} alt="digimon Logo" />
+          <img id="logo-pic" src={logo} alt="main Logo" />
         </Link>
       </div>
       <Link to="/" className="page tech-shop">
