@@ -19,15 +19,22 @@ function Product() {
       const res = await axios.get(api_url);
       console.log(res.data);
       setAllProducts(res.data);
+      setFilter(res.data);
+      setLoading(false);
     } catch (e) {
-      console.log(e);
+      // Logging full error
+      console.log("The error in /products:", e);
+      console.error("Error details:", e.response);
+      console.error("Error message:", e.message);
+      console.error("Error code:", e.code);
+      setLoading(false);
     }
   };
 
   // Use effect for setting and getting all products
   useEffect(() => {
-    fetchProducts(), [];
-  });
+    fetchProducts();
+  }, []);
 
   // Search Function
   const searchFeature = (e) => {
@@ -53,5 +60,44 @@ function Product() {
     setFilter(filteredList);
   };
 
-  return <></>;
+  return (
+    <>
+      <div className="main-section">
+        {/* Shop Title and About section */}
+        <h1 id="digimon-world-title">Geek Central</h1>
+        <p id="about-p">
+          The place for all your nerdy needs. Everything from video games,
+          anime, and etc.
+        </p>
+
+        {/* Search Feature */}
+        <input
+          type="text"
+          className="search-bar"
+          placeholder="search for a digimon"
+          value={search}
+          onChange={searchFeature}
+        />
+
+        {/* Loading all product items into the product page */}
+
+        {loadApi ? (
+          <p>Loading all products...</p>
+        ) : (
+          <div className="digimons-list">
+            {filterProducts.map((product, i) => (
+              <div key={i} className="digimon-box">
+                <h2>{product.title}</h2>
+                <p>${product.price}</p>
+                <p>{product.description}</p>
+                <p>{product.category}</p>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </>
+  );
 }
+
+export default Product;

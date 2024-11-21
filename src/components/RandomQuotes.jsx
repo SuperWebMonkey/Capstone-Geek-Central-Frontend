@@ -20,8 +20,10 @@ function RandomQuote() {
 
   // Uses axios to get a random quote from the zenquote api
   const getQuote = async () => {
+    // Used to add cor policy to the api
     const cors_url = "https://cors-anywhere.herokuapp.com/"; // for testing purposes, not recommended for production
     const api_quote_url = `${cors_url}https://zenquotes.io/api/random`;
+
     try {
       setLoading(true);
       setError(null);

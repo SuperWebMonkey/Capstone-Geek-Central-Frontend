@@ -106,8 +106,8 @@ p {
   box-shadow: 0 0 8px rgba(0, 123, 255, 0.5); /* Add a blue glow around the search bar */
 }
 
-/* Digimon Items and Cards */
-#main-section {
+/* Shop Items and Cards */
+.main-section {
   display: flex;
   flex-direction: column;
   /* flex-wrap: wrap; */
