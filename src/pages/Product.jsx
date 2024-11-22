@@ -44,6 +44,7 @@ function Product() {
     setSearch(query);
 
     const filteredList = products.filter((item) => {
+      console.log(item);
       const titleMatch = item.title.toLowerCase().includes(query);
 
       // console.log(`Searching for: ${query}`);
@@ -74,13 +75,12 @@ function Product() {
         <input
           type="text"
           className="search-bar"
-          placeholder="search for a digimon"
+          placeholder="search for a product"
           value={search}
           onChange={searchFeature}
         />
 
         {/* Loading all product items into the product page */}
-
         {loadApi ? (
           <p>Loading all products...</p>
         ) : (
