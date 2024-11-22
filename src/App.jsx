@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import HomePage from "./pages/HomePage.jsx";
@@ -72,8 +72,20 @@ function App() {
     <>
       <Navbar itemCount={0} />
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/cart" element={<Cart />}></Route>
+        <Route
+          path="/"
+          element={
+            <HomePage
+              cart={cart}
+              addProduct={addProduct}
+              removeProduct={removeProduct}
+            />
+          }
+        />
+        <Route
+          path="/cart"
+          element={<Cart cart={cart} removeProduct={removeProduct} />}
+        ></Route>
       </Routes>
       <Footer />
     </>

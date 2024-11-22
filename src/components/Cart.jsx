@@ -4,14 +4,13 @@ function Cart({ cartItems, removeItem }) {
       <h1>Cart</h1>
       {/* {cartItems.length > 0 ? (
           <div className="cart-items">
-            {cartItems.map((digi, i) => (
+            {cartItems.map((product, i) => (
               <div key={i} className="cart-item">
-                <img src={digi.img} alt={digi.name} />
                 <div>
-                  <h3>{digi.name}</h3>
-                  <p>Count: {digi.count}</p>
+                  <h3>{product.title}</h3>
+                  <p>Count: {product.count}</p>
                   <button
-                    onClick={() => removeItem(digi)}
+                    onClick={() => removeItem(product)}
                     className="trash-button"
                   >
                     Trash

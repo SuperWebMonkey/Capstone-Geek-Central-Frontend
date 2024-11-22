@@ -5,10 +5,10 @@ import Navbar from "../components/Navbar.jsx";
 import Footer from "../components/Footer.jsx";
 // import Cart from "./Cart.jsx";
 
+// change the api_url with the render link when deploying
 const api_url = "http://localhost:3000/products";
 
-function Product() {
-  const [products, setProducts] = useState([]);
+function Product({ cart, addProduct, removeProduct }) {
   const [search, setSearch] = useState("");
   const [loadApi, setLoading] = useState(true);
   const [allProducts, setAllProducts] = useState([]);
@@ -43,7 +43,7 @@ function Product() {
     // console.log(typeof query, query);
     setSearch(query);
 
-    const filteredList = products.filter((item) => {
+    const filteredList = allProducts.filter((item) => {
       console.log(item);
       const titleMatch = item.title.toLowerCase().includes(query);
 
