@@ -5,3 +5,7 @@
   align-items: center;
   flex-direction: column;
 }
+
+.cart-section p {
+  margin-bottom: 5px;
+}

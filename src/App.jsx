@@ -16,28 +16,24 @@ function App() {
   // Add item to the cart
   const addProduct = (product) => {
     console.log("product is", product);
-    if (cart.length > 0) {
-    }
 
     let productInCart = cart.find((item) => item.title === product.title);
     console.log("in cart", productInCart);
 
-    checkInCart(productInCart, product);
-  };
-
-  const checkInCart = (inCart, product) => {
-    if (inCart) {
-      setCart(
-        cart.map((item) =>
-          item.name === product.name ? { ...item, count: item.count + 1 } : item
-        )
-      );
-      console.log("Cart 2:", cart);
-    } else {
-      setCart([...cart, { ...product, count: 1 }]);
-      console.log("Contents", [...cart, { ...product, count: 1 }]);
-      console.log("Cart 1:", cart);
-    }
+    // Use prevCart to get the most recent state and then add count
+    setCart((prevCart) => {
+      // If product exist, add count to  the existing product
+      if (productInCart) {
+        return prevCart.map((item) =>
+          item.title === product.title
+            ? { ...item, count: item.count + 1 }
+            : item
+        );
+      } else {
+        // if product does not exist, set to one
+        return [...prevCart, { ...product, count: 1 }];
+      }
+    });
   };
 
   // Remove product from the cart
@@ -63,14 +59,12 @@ function App() {
 
   // Count all products in the cart
   const getCount = () => {
-    return cart.reduce((sum, product) => {
-      sum += product.count;
-    }, 0);
+    return cart.reduce((sum, product) => (sum += product.count), 0);
   };
 
   return (
     <>
-      <Navbar itemCount={0} />
+      <Navbar productCount={getCount()} />
       <Routes>
         <Route path="/" element={<HomePage addProduct={addProduct} />} />
         <Route
