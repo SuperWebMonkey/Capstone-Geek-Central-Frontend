@@ -1,18 +1,18 @@
 import "../styles/Cart.css";
 
-function Cart({ cartItems, removeItem }) {
+function Cart({ cart, removeProduct }) {
   return (
     <div className="cart-section">
       <h1>Cart</h1>
-      {cartItems.length > 0 ? (
+      {cart.length > 0 ? (
         <div className="cart-items">
-          {cartItems.map((product, i) => (
+          {cart.map((product, i) => (
             <div key={i} className="cart-item">
               <div>
                 <h3>{product.title}</h3>
                 <p>Count: {product.count}</p>
                 <button
-                  onClick={() => removeItem(product)}
+                  onClick={() => removeProduct(product)}
                   className="trash-button"
                 >
                   Trash
