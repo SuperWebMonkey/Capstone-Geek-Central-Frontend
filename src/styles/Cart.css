@@ -1,0 +1,5 @@
+/* Cart Page styling */
+.cart-section {
+  display: flex;
+  justify-content: center;
+}

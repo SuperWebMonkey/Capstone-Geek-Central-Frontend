@@ -72,16 +72,7 @@ function App() {
     <>
       <Navbar itemCount={0} />
       <Routes>
-        <Route
-          path="/"
-          element={
-            <HomePage
-              cart={cart}
-              addProduct={addProduct}
-              removeProduct={removeProduct}
-            />
-          }
-        />
+        <Route path="/" element={<HomePage addProduct={addProduct} />} />
         <Route
           path="/cart"
           element={<Cart cart={cart} removeProduct={removeProduct} />}

@@ -1,14 +1,11 @@
 import React, { useRef, useState, useEffect } from "react";
 import axios from "axios";
-import { Router, Route, Routes } from "react-router-dom";
-import Navbar from "../components/Navbar.jsx";
-import Footer from "../components/Footer.jsx";
 // import Cart from "./Cart.jsx";
 
 // change the api_url with the render link when deploying
 const api_url = "http://localhost:3000/products";
 
-function Product({ cart, addProduct, removeProduct }) {
+function Product({ addProduct }) {
   const [search, setSearch] = useState("");
   const [loadApi, setLoading] = useState(true);
   const [allProducts, setAllProducts] = useState([]);
@@ -91,6 +88,14 @@ function Product({ cart, addProduct, removeProduct }) {
                 <p>${product.price}</p>
                 <p>{product.description}</p>
                 <p>{product.category}</p>
+                <div className="button-group">
+                  <button
+                    className="add-button"
+                    onClick={() => addProduct(product)}
+                  >
+                    Add To Cart
+                  </button>
+                </div>
               </div>
             ))}
           </div>

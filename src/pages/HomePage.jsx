@@ -1,11 +1,11 @@
 import RandomQuote from "../components/RandomQuotes.jsx";
 import Product from "./Product.jsx";
 
-function HomePage() {
+function HomePage({ addProduct }) {
   return (
     <>
       <RandomQuote />
-      <Product />
+      <Product addProduct={addProduct} />
     </>
   );
 }
