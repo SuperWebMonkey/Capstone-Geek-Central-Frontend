@@ -15,14 +15,20 @@ import "../styles/RandomQuote.css";
 
 function RandomQuote() {
   const [quote, setQuote] = useState(null);
+  const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const apiKey = import.meta.env.VITE_MOVIE_API_KEY;
+  const movieUrl = "";
 
   // Uses axios to get a random quote from the zenquote api
   const getQuote = async () => {
     // Used to add cor policy to the api
     const cors_url = "https://cors-anywhere.herokuapp.com/"; // for testing purposes, not recommended for production
     const api_quote_url = `${cors_url}https://zenquotes.io/api/random`;
+    const randomPage = Math.floor(Math.random() * 150) + 1;
+    const movieUrl = `https://www.omdbapi.com/?apikey=${apiKey}&s=movie&page=${randomPage}`;
 
     try {
       setLoading(true);
