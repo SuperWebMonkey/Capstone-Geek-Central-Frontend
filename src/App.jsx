@@ -5,6 +5,7 @@ import HomePage from "./pages/HomePage.jsx";
 import Navbar from "./components/Navbar.jsx";
 import Footer from "./components/Footer.jsx";
 import Cart from "./components/Cart.jsx";
+import AdminPage from "./pages/AdminPage.jsx";
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -40,6 +41,22 @@ function App() {
   const removeProduct = (product) => {
     const productExist = cart.find((item) => item.title === product.title);
 
+    // setCart((prevCart) => {
+    //   const productExist = prevCart.find((item) => item.title === product.title);
+
+    //   if (productExist && productExist.count > 1) {
+    //     // Decrease count if there are more than one of the same item
+    //     return prevCart.map((item) =>
+    //       item.title === product.title
+    //         ? { ...item, count: item.count - 1 }
+    //         : item
+    //     );
+    //   } else {
+    //     // If only one or none left, remove it from the cart entirely
+    //     return prevCart.filter((item) => item.title !== product.title);
+    //   }
+    // });
+
     removeFromCart(productExist, product);
   };
 
@@ -67,6 +84,7 @@ function App() {
       <Navbar productCount={getCount()} />
       <Routes>
         <Route path="/" element={<HomePage addProduct={addProduct} />} />
+        <Route path="/admin" element={<AdminPage />} />
         <Route
           path="/cart"
           element={<Cart cart={cart} removeProduct={removeProduct} />}
