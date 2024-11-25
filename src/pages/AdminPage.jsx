@@ -128,11 +128,11 @@ function AdminPage() {
   };
 
   // Delete request with axios
-  const deleteRequest = async (id) => {
+  const deleteRequest = async () => {
     try {
-      await axios.delete(`${apiUrl}/${id}`);
+      await axios.delete(`${apiUrl}/${formData.id}`);
       getProducts();
-      setFormMode("delete");
+      setFormMode("post");
     } catch (error) {
       console.error("Error deleting item", error);
     }
@@ -242,8 +242,8 @@ function AdminPage() {
           )}
           {/* Show all products */}
           <div className="product-list">
-            {products.map((product, index) => (
-              <li key={index}>
+            {products.map((product) => (
+              <li key={product._id}>
                 {product.title}
                 <button
                   id="edit-button"

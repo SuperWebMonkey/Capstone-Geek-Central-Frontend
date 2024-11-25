@@ -196,6 +196,23 @@ p {
   width: 100vw;
 }
 
+.footer-wave {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.footer-wave svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 100px;
+  fill: #2d3436;
+}
+
 .footer-content {
   display: flex;
   justify-content: center;

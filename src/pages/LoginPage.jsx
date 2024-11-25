@@ -5,7 +5,7 @@
  *
  */
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { FaGoogle, FaGithub } from "react-icons/fa";
 import "../styles/LoginPage.css";
 
@@ -56,7 +56,7 @@ function LoginPage() {
             <span>GitHub</span>
           </button>
         </div>
-
+        {/* divideer between social media logins and regular login */}
         <div className="divider">
           <span>Or continue with</span>
         </div>
@@ -83,7 +83,7 @@ function LoginPage() {
               onChange={handleInputChange}
             />
           </div>
-
+          {/* Submit button */}
           <button type="submit">
             {isLogin ? "Sign in" : "Create account"}
           </button>
