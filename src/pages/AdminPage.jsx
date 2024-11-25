@@ -224,7 +224,7 @@ function AdminPage() {
           )}
           {/* Submitting the form */}
           <div className="submit-section">
-            <button type="submit">
+            <button id="request-button" type="submit">
               {formMode === "put"
                 ? "Update"
                 : formMode === "delete"
@@ -244,10 +244,13 @@ function AdminPage() {
           {products.map((product, index) => (
             <li key={index}>
               {product.title}
-              <button onClick={() => putFormHandler(product)}>
+              <button id="edit-button" onClick={() => putFormHandler(product)}>
                 Edit Product
               </button>
-              <button onClick={() => deleteFormHandler(product)}>
+              <button
+                id="delete-button"
+                onClick={() => deleteFormHandler(product)}
+              >
                 Delete Product
               </button>
             </li>
