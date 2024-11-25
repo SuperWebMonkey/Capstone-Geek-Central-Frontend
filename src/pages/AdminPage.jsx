@@ -43,7 +43,18 @@ function AdminPage({ products }) {
     }));
   };
 
-  // Handle the editing state and making it true
+  // Handle the post state in the form
+  const postFormHandler = (curProduct) => {
+    setFormData({
+      title: curProduct.title,
+      price: curProduct.price,
+      description: curProduct.description,
+      category: curProduct.category,
+    });
+    setFormMode("post");
+  };
+
+  // Handle the put state and making it true
   const putFormHandler = (curProduct) => {
     setFormData({
       title: curProduct.title,
@@ -54,7 +65,8 @@ function AdminPage({ products }) {
     setFormMode("put");
   };
 
-  const deleteFormHandler = (curPorduct) => {
+  // Handle the delete form
+  const deleteFormHandler = (curProduct) => {
     setFormData({
       title: curProduct.title,
       price: curProduct.price,
@@ -62,6 +74,22 @@ function AdminPage({ products }) {
       category: curProduct.category,
     });
     setFormMode("delete");
+  };
+
+  // Used when the form changes to a different HTTP request
+  const modeChange = (e) => {
+    e.preventDefault();
+    const selected = e.target.value;
+    setFormMode(selected);
+
+    if (selected === "post") {
+      setFormData({
+        title: "",
+        price: null,
+        description: "",
+        category: "",
+      });
+    }
   };
 
   //  Post request with axios
