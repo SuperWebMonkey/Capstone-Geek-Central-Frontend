@@ -158,103 +158,108 @@ function AdminPage() {
   };
 
   return (
-    <div className="form-section">
-      <div className="form-menu">
-        {/* Select section */}
-        <h1>Admin Form</h1>
-        <label>Choose which HTTP request:</label>
-        <select value={formMode} onChange={modeChange}>
-          <option value="post">post</option>
-          <option value="put">put</option>
-          <option value="delete">delete</option>
-        </select>
-        {/* Form for selecting the request */}
-        <form className="admin-form" onSubmit={setMode}>
-          {formMode !== "delete" && (
-            <>
-              <div id="product-title">
-                <label>Title:</label>
-                <input
-                  type="text"
-                  name="title"
-                  value={formData.title}
-                  onChange={setFormChange}
-                  required
-                  disabled={formMode === "delete"}
-                />
-              </div>
-              <div id="product-price">
-                <label>Price:</label>
-                <input
-                  type="text"
-                  name="price"
-                  value={formData.price}
-                  onChange={setFormChange}
-                  required
-                  disabled={formMode === "delete"}
-                />
-              </div>
-              <div id="product-description">
-                <label>description:</label>
-                <textarea
-                  type="text"
-                  name="description"
-                  value={formData.description}
-                  onChange={setFormChange}
-                  required
-                  rows="8"
-                  cols="50"
-                  disabled={formMode === "delete"}
-                />
-              </div>
-              <div id="product-description">
-                <label>Category:</label>
-                <select
-                  name="category"
-                  value={formData.category}
-                  onChange={setFormChange}
-                  required
-                >
-                  <option value="electronics">electronics</option>
-                  <option value="movies">movies</option>
-                  <option value="anime">anime</option>
-                </select>
-              </div>
-            </>
+    <div className="admin-section">
+      <div className="form-section">
+        <div className="form-menu">
+          {/* Select section */}
+          <h1>Admin Form</h1>
+          <label>Choose which HTTP request:</label>
+          <select value={formMode} onChange={modeChange}>
+            <option value="post">post</option>
+            <option value="put">put</option>
+            <option value="delete">delete</option>
+          </select>
+          {/* Form for selecting the request */}
+          <form className="admin-form" onSubmit={setMode}>
+            {formMode !== "delete" && (
+              <>
+                <div id="product-title">
+                  <label>Title:</label>
+                  <input
+                    type="text"
+                    name="title"
+                    value={formData.title}
+                    onChange={setFormChange}
+                    required
+                    disabled={formMode === "delete"}
+                  />
+                </div>
+                <div id="product-price">
+                  <label>Price:</label>
+                  <input
+                    type="text"
+                    name="price"
+                    value={formData.price}
+                    onChange={setFormChange}
+                    required
+                    disabled={formMode === "delete"}
+                  />
+                </div>
+                <div id="product-description">
+                  <label>description:</label>
+                  <textarea
+                    type="text"
+                    name="description"
+                    value={formData.description}
+                    onChange={setFormChange}
+                    required
+                    rows="8"
+                    cols="50"
+                    disabled={formMode === "delete"}
+                  />
+                </div>
+                <div id="product-description">
+                  <label>Category:</label>
+                  <select
+                    name="category"
+                    value={formData.category}
+                    onChange={setFormChange}
+                    required
+                  >
+                    <option value="electronics">electronics</option>
+                    <option value="movies">movies</option>
+                    <option value="anime">anime</option>
+                  </select>
+                </div>
+              </>
+            )}
+            {/* Submitting the form */}
+            <div className="submit-section">
+              <button id="request-button" type="submit">
+                {formMode === "put"
+                  ? "Update"
+                  : formMode === "delete"
+                  ? "Confirm Deletion"
+                  : "Add"}
+              </button>
+            </div>
+          </form>
+          {/* Asking the user if they want to delete */}
+          {formMode === "delete" && (
+            <div className="ask-to-delete">
+              <p>Are you sure you want to delete "{formData.title}"?</p>
+            </div>
           )}
-          {/* Submitting the form */}
-          <div className="submit-section">
-            <button id="request-button" type="submit">
-              {formMode === "put"
-                ? "Update"
-                : formMode === "delete"
-                ? "Confirm Deletion"
-                : "Add"}
-            </button>
+          {/* Show all products */}
+          <div className="product-list">
+            {products.map((product, index) => (
+              <li key={index}>
+                {product.title}
+                <button
+                  id="edit-button"
+                  onClick={() => putFormHandler(product)}
+                >
+                  Edit Product
+                </button>
+                <button
+                  id="delete-button"
+                  onClick={() => deleteFormHandler(product)}
+                >
+                  Delete Product
+                </button>
+              </li>
+            ))}
           </div>
-        </form>
-        {/* Asking the user if they want to delete */}
-        {formMode === "delete" && (
-          <div className="ask-to-delete">
-            <p>Are you sure you want to delete "{formData.title}"?</p>
-          </div>
-        )}
-        {/* Show all products */}
-        <div className="product-list">
-          {products.map((product, index) => (
-            <li key={index}>
-              {product.title}
-              <button id="edit-button" onClick={() => putFormHandler(product)}>
-                Edit Product
-              </button>
-              <button
-                id="delete-button"
-                onClick={() => deleteFormHandler(product)}
-              >
-                Delete Product
-              </button>
-            </li>
-          ))}
         </div>
       </div>
     </div>
