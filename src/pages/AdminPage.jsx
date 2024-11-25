@@ -10,7 +10,7 @@ import axios from "axios";
 function AdminPage({ products }) {
   const [formData, setFormData] = useState({
     title: "",
-    price: "",
+    price: null,
     description: "",
     category: "",
   });
@@ -44,18 +44,24 @@ function AdminPage({ products }) {
   };
 
   // Handle the editing state and making it true
-  const editProduct = (curProduct) => {
+  const putFormHandler = (curProduct) => {
     setFormData({
       title: curProduct.title,
       price: curProduct.price,
       description: curProduct.description,
       category: curProduct.category,
     });
-    setIsEdit(true);
+    setFormMode("put");
   };
 
-  const setMode = async (e) => {
-    e.preventDefault();
+  const deleteFormHandler = (curPorduct) => {
+    setFormData({
+      title: curProduct.title,
+      price: curProduct.price,
+      description: curProduct.description,
+      category: curProduct.category,
+    });
+    setFormMode("delete");
   };
 
   //  Post request with axios
@@ -67,7 +73,7 @@ function AdminPage({ products }) {
         description: formData.description,
         category: formData.category,
       });
-      setProducts(products);
+      getProducts();
     } catch (e) {
       console.log("Error with post request", e);
     }
@@ -82,7 +88,7 @@ function AdminPage({ products }) {
         description: formData.description,
         category: formData.category,
       });
-      setProducts(products);
+      getProducts();
       setFormMode("put");
     } catch (e) {
       console.log("Error with put request:", e);
@@ -93,11 +99,30 @@ function AdminPage({ products }) {
   const deleteRequest = async (id) => {
     try {
       await axios.delete(`${apiUrl}/${id}`);
-      setProducts(products); // Re-fetch items after deletion
-      setFormMode("delete"); // Reset to create mode
+      getProducts();
+      setFormMode("delete");
     } catch (error) {
       console.error("Error deleting item", error);
     }
+  };
+
+  // Sets the form to one of the following states: post, put or delete.
+  // Resets after the http request has been performed
+  const setMode = async (e) => {
+    e.preventDefault();
+
+    // Form Logic
+    if (formMode === "post") {
+      await postRequest();
+    } else if (formMode === "put") {
+      await putRequest();
+    } else if (formMode === "delete") {
+      await deleteRequest();
+    }
+
+    // Resetting the form
+    setFormData({ title: "", price: null, description: "", category: "" });
+    setFormMode("post");
   };
 
   return (
