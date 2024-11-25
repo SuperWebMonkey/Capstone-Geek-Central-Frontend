@@ -58,7 +58,7 @@ function AdminPage() {
   // Handle the put state and making it true
   const putFormHandler = (curProduct) => {
     setFormData({
-      id: curProduct.id,
+      id: curProduct._id,
       title: curProduct.title,
       price: curProduct.price,
       description: curProduct.description,
@@ -70,7 +70,7 @@ function AdminPage() {
   // Handle the delete form
   const deleteFormHandler = (curProduct) => {
     setFormData({
-      id: curProduct.id,
+      id: curProduct._id,
       title: curProduct.title,
       price: curProduct.price,
       description: curProduct.description,
@@ -112,29 +112,30 @@ function AdminPage() {
   };
 
   // put request with axios
-  const putRequest = async (e) => {
+  const putRequest = async () => {
     try {
+      console.log("Updating product with ID:", formData.id);
       await axios.put(`${apiUrl}/${formData.id}`, {
         title: formData.title,
-        price: formData.price,
+        price: Number(formData.price),
         description: formData.description,
         category: formData.category,
       });
       getProducts();
-      setFormMode("put");
     } catch (e) {
-      console.log("Error with put request:", e);
+      console.error("Error with put request:", e.response?.data || e);
     }
   };
 
   // Delete request with axios
   const deleteRequest = async () => {
     try {
+      console.log("Deleting product with ID:", formData.id);
       await axios.delete(`${apiUrl}/${formData.id}`);
       getProducts();
       setFormMode("post");
     } catch (error) {
-      console.error("Error deleting item", error);
+      console.error("Error deleting item:", error.response?.data || error);
     }
   };
 
