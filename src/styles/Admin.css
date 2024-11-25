@@ -4,6 +4,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
 .form-section {
@@ -56,6 +58,7 @@ textarea {
   resize: vertical;
 }
 
+/* buttons */
 button {
   width: 100%;
   padding: 12px;
@@ -92,6 +95,7 @@ button:hover {
   margin-top: 20px;
 }
 
+/* product listings */
 .product-list {
   margin-top: 20px;
   list-style-type: none;
