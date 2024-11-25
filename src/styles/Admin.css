@@ -1,4 +1,6 @@
 /* Admin Form Section Styling */
+
+/* admin section parent class to form section */
 .admin-section {
   font-family: "Arial", sans-serif;
   display: flex;
@@ -8,6 +10,7 @@
   padding-bottom: 15px;
 }
 
+/* form section where the form is */
 .form-section {
   display: flex;
   justify-content: center;

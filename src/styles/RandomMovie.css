@@ -1,0 +1,54 @@
+/* Styling for the Randomg Quote Component */
+.movie-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f4f4f4;
+  font-family: Arial, sans-serif;
+  padding: 40px;
+}
+
+.movie-card {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 350px;
+  width: 100%;
+  overflow: hidden;
+  height: auto;
+  max-height: 700px;
+}
+
+.movie-card:hover {
+  transform: scale(1.05);
+}
+
+#movie-img {
+  width: 100%;
+  height: auto;
+  border-bottom: 3px solid #ccc;
+  /* height: 180px; */
+  object-fit: cover;
+  border-bottom: 3px solid #ccc;
+}
+
+#movie-title {
+  font-size: 1.5rem;
+  color: #333;
+  margin: 15px 0;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+#movie-plot {
+  color: #555;
+  font-size: 1rem;
+  margin: 10px;
+  line-height: 1.4;
+  text-align: left;
+  padding: 0 20px;
+  font-style: italic;
+}

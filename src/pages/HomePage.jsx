@@ -1,10 +1,10 @@
-import RandomQuote from "../components/RandomQuotes.jsx";
+import RandomMovie from "../components/RandomMovie.jsx";
 import Product from "./Product.jsx";
 
 function HomePage({ addProduct }) {
   return (
     <>
-      <RandomQuote />
+      <RandomMovie />
       <Product addProduct={addProduct} />
     </>
   );

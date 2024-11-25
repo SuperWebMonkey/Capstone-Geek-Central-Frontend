@@ -11,57 +11,68 @@
 
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "../styles/RandomQuote.css";
+import "../styles/RandomMovie.css";
 
-function RandomQuote() {
-  const [quote, setQuote] = useState(null);
+function RandomMovie() {
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const apiKey = import.meta.env.VITE_MOVIE_API_KEY;
-  const movieUrl = "";
 
   // Uses axios to get a random quote from the zenquote api
-  const getQuote = async () => {
+  const getMovie = async () => {
     // Used to add cor policy to the api
     const cors_url = "https://cors-anywhere.herokuapp.com/"; // for testing purposes, not recommended for production
-    const api_quote_url = `${cors_url}https://zenquotes.io/api/random`;
     const randomPage = Math.floor(Math.random() * 150) + 1;
     const movieUrl = `https://www.omdbapi.com/?apikey=${apiKey}&s=movie&page=${randomPage}`;
 
     try {
       setLoading(true);
       setError(null);
-      const response = await axios.get(api_quote_url); // Fetch from ZenQuotes API
-      console.log(response.data[0]);
-      setQuote(response.data[0]);
+      const response = await axios.get(movieUrl); // Fetch from OMDB movie API
+
+      // Pick a random movie from the list
+      const randomMovieIndex = Math.floor(
+        Math.random() * response.data.Search.length
+      );
+      const randomMovie = response.data.Search[randomMovieIndex];
+      console.log(randomMovie);
+
+      const randomMovieUrl = `https://www.omdbapi.com/?apikey=${apiKey}&i=${randomMovie.imdbID}`;
+
+      // Fetch detailed information of the selected movie
+      const movieDetails = await axios.get(randomMovieUrl);
+      setMovie(movieDetails.data);
+      console.log(movieDetails.data);
     } catch (err) {
-      setError("Failed to fetch quote. May be a fetch limit.");
+      setError("Failed to fetch movie data.");
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    getQuote();
-  }, []);
+    getMovie();
+  }, [apiKey]);
 
   return (
     // Retrieve a random quote
-    <div className="quote-section">
+    <div className="movie-section">
       {loading ? (
-        <p>Loading Quote...</p> // Show loading while waiting for the quote
+        <p>Loading Movie...</p> // Show loading while waiting for the movie data
       ) : error ? (
         <p>{error}</p>
       ) : (
-        <div className="quote-card">
-          <p className="author">{quote.a}</p> {/* Author */}
-          <p className="famous-quote">" - {quote.q}"</p> {/* Quote */}
+        <div className="movie-card">
+          <img id="movie-img" src={movie.Poster} alt={movie.Title} />
+          <h1 id="movie-title">
+            {movie.Title} ({movie.Year})
+          </h1>
         </div>
       )}
     </div>
   );
 }
 
-export default RandomQuote;
+export default RandomMovie;
