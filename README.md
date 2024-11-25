@@ -7,7 +7,7 @@ put, post, and delete request on products.
 ## Live Site
 
 You can view the live version of the site at netlify:  
-[Live Site Link](Put Link Here)
+[Live Site Link](https://geekcentral.netlify.app/)
 
 ## Backend Link
 
