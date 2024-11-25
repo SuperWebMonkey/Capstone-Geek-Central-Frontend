@@ -22,7 +22,7 @@ function Navbar({ productCount }) {
       <Link to="/admin" className="page tech-shop">
         Admin
       </Link>
-      <Link to="#" className="page login" style={linkStyle}>
+      <Link to="/login" className="page login" style={linkStyle}>
         login
       </Link>
       <Link to="/cart" className="page wishlist" style={linkStyle}>

@@ -1,0 +1,185 @@
+/* Main container with background image */
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  /* Background image setup */
+  background-image: url("../assets/img/golden-saucer.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  /* Add a dark overlay to improve readability */
+  position: relative;
+}
+
+/* Overlay for better contrast */
+.login-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+  backdrop-filter: blur(2px); /* Slight blur effect */
+}
+
+/* Ensure login box appears above the overlay */
+.login-box {
+  position: relative; /* Places it above the overlay */
+  z-index: 1;
+  background-color: #ffffff; /* Fully solid white */
+  padding: 2.5rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px; /* Limits width on larger screens */
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+  .login-container::before {
+    background: rgba(0, 0, 0, 0.7); /* Darker overlay for dark mode */
+  }
+
+  .login-box {
+    background-color: #111827; /* Fully solid dark background */
+  }
+}
+
+/* Media query adjustments */
+@media screen and (max-width: 480px) {
+  .login-container {
+    background-position: center center;
+    padding: 1rem;
+  }
+}
+
+/* Header section styling */
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* Typography for main heading */
+.header h2 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 0.75rem;
+}
+
+/* Subtitle and toggle button container */
+.header p {
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+/* Toggle button between login/signup */
+.header button {
+  background: none;
+  border: none;
+  color: #4f46e5;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.header button:hover {
+  color: #4338ca;
+}
+
+/* Social login buttons grid layout */
+.social-login {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two equal columns */
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Individual social login button styling */
+.social-login button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.625rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background-color: white;
+  color: #4b5563;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.social-login button:hover {
+  background-color: #f3f4f6;
+}
+
+/* Divider line with text overlay ("Or continue with") */
+.divider {
+  position: relative;
+  text-align: center;
+  margin: 1.5rem 0;
+}
+
+/* Horizontal line in divider */
+.divider::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: #e5e7eb;
+}
+
+/* Text in divider */
+.divider span {
+  position: relative;
+  background-color: white; /* Creates the break in the line */
+  padding: 0 0.75rem;
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+/* Form input group styling */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+/* Form input styling */
+.form-group input {
+  width: 100%;
+  padding: 0.625rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.875rem;
+}
+
+/* Input focus state with highlight */
+.form-group input:focus {
+  outline: none;
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 1px #4f46e5;
+}
+
+/* Submit button styling */
+form button {
+  width: 100%;
+  padding: 0.625rem;
+  background-color: #4f46e5;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+form button:hover {
+  background-color: #4338ca;
+}

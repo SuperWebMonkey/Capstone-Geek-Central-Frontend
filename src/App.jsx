@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar.jsx";
 import Footer from "./components/Footer.jsx";
 import Cart from "./components/Cart.jsx";
 import AdminPage from "./pages/AdminPage.jsx";
+import LoginPage from "./pages/LoginPage.jsx";
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -89,6 +90,7 @@ function App() {
           path="/cart"
           element={<Cart cart={cart} removeProduct={removeProduct} />}
         ></Route>
+        <Route path="/login" element={<LoginPage />} />
       </Routes>
       <Footer />
     </>
