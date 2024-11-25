@@ -1,13 +1,14 @@
 /**
  *
- * Admin form page that handles HTTP requests
+ * Admin form page that handles HTTP requests such as put, post, and delete
+ * Form is used to initiate the http request
  *
  */
 
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-function AdminPage({ products }) {
+function AdminPage() {
   const [formData, setFormData] = useState({
     title: "",
     price: null,
@@ -15,7 +16,6 @@ function AdminPage({ products }) {
     category: "",
   });
   const [products, setProducts] = useState([]);
-  const [isEdit, setIsEdit] = useState(false);
   // Three different modes: post, put, delete
   const [formMode, setFormMode] = useState("post");
   const apiUrl = import.meta.env.VITE_API_URL;
@@ -57,6 +57,7 @@ function AdminPage({ products }) {
   // Handle the put state and making it true
   const putFormHandler = (curProduct) => {
     setFormData({
+      id: curProduct.id,
       title: curProduct.title,
       price: curProduct.price,
       description: curProduct.description,
@@ -68,6 +69,7 @@ function AdminPage({ products }) {
   // Handle the delete form
   const deleteFormHandler = (curProduct) => {
     setFormData({
+      id: curProduct.id,
       title: curProduct.title,
       price: curProduct.price,
       description: curProduct.description,
@@ -102,6 +104,7 @@ function AdminPage({ products }) {
         category: formData.category,
       });
       getProducts();
+      setFormMode("post");
     } catch (e) {
       console.log("Error with post request", e);
     }
@@ -155,10 +158,101 @@ function AdminPage({ products }) {
 
   return (
     <div className="form-section">
-      <h1>Admin Form</h1>
-      <form></form>
-      <h2>List of all products:</h2>
-      <ul></ul>
+      <div className="form-menu">
+        {/* Select section */}
+        <h1>Admin Form</h1>
+        <label>Choose which HTTP request:</label>
+        <select value={formMode} onChange={modeChange}>
+          <option value="post">post</option>
+          <option value="put">put</option>
+          <option value="delete">delete</option>
+        </select>
+        {/* Form for selecting the request */}
+        <form className="admin-form" onSubmit={setMode}>
+          {formMode !== "delete" && (
+            <>
+              <div id="product-title">
+                <label>Title:</label>
+                <input
+                  type="text"
+                  name="title"
+                  value={formData.title}
+                  onChange={setFormChange}
+                  required
+                  disabled={formMode === "delete"}
+                />
+              </div>
+              <div id="product-price">
+                <label>Price:</label>
+                <input
+                  type="text"
+                  name="price"
+                  value={formData.price}
+                  onChange={setFormChange}
+                  required
+                  disabled={formMode === "delete"}
+                />
+              </div>
+              <div id="product-description">
+                <label>description:</label>
+                <textarea
+                  type="text"
+                  name="description"
+                  value={formData.description}
+                  onChange={setFormChange}
+                  required
+                  rows="8"
+                  cols="50"
+                  disabled={formMode === "delete"}
+                />
+              </div>
+              <div id="product-description">
+                <label>Category:</label>
+                <select
+                  name="category"
+                  value={formData.category}
+                  onChange={setFormChange}
+                  required
+                >
+                  <option value="electronics">electronics</option>
+                  <option value="movies">movies</option>
+                  <option value="anime">anime</option>
+                </select>
+              </div>
+            </>
+          )}
+          {/* Submitting the form */}
+          <div className="submit-section">
+            <button type="submit">
+              {formMode === "put"
+                ? "Update"
+                : formMode === "delete"
+                ? "Confirm Deletion"
+                : "Add"}
+            </button>
+          </div>
+        </form>
+        {/* Asking the user if they want to delete */}
+        {formMode === "delete" && (
+          <div className="ask-to-delete">
+            <p>Are you sure you want to delete "{formData.title}"?</p>
+          </div>
+        )}
+        {/* Show all products */}
+        <div className="product-list">
+          {products.map((product, index) => (
+            <li key={index}>
+              {product.title}
+              <button onClick={() => putFormHandler(product)}>
+                Edit Product
+              </button>
+              <button onClick={() => deleteFormHandler(product)}>
+                Delete Product
+              </button>
+            </li>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
