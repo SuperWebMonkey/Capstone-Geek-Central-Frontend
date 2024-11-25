@@ -20,6 +20,21 @@ function RandomMovie() {
 
   const apiKey = import.meta.env.VITE_MOVIE_API_KEY;
 
+  // Filters out NSFW movies
+  const filterNSFW = (movie) => {
+    if (movie.Rated === "NC-17") {
+      return true;
+    }
+
+    const nsfwGenres = ["Adult"];
+
+    if (nsfwGenres.some((genre) => movie.Genre.includes(genre))) {
+      return true;
+    }
+
+    return false;
+  };
+
   // Uses axios to get a random quote from the zenquote api
   const getMovie = async () => {
     // Used to add cor policy to the api
@@ -43,8 +58,20 @@ function RandomMovie() {
 
       // Fetch detailed information of the selected movie
       const movieDetails = await axios.get(randomMovieUrl);
-      setMovie(movieDetails.data);
-      console.log(movieDetails.data);
+      console.log("movie details", movieDetails.data);
+
+      // Filter out nsfw movie and move on to a different movie
+      if (filterNSFW(movieDetails.data)) {
+        setMovie(null);
+        getMovie();
+      } else {
+        // Set movie if it is sfw
+        setMovie(movieDetails.data);
+        console.log(movieDetails.data);
+      }
+
+      // setMovie(movieDetails.data);
+      // console.log(movieDetails.data);
     } catch (err) {
       setError("Failed to fetch movie data.");
     } finally {
