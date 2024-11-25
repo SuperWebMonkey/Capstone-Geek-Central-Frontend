@@ -9,8 +9,16 @@
   padding: 40px;
 }
 
+.movie-background {
+  background-image: url("../assets/img/golden-saucer.png");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
 .movie-card {
-  background-color: #fff;
+  /* background-color: #fff; */
+  background-color: rgba(255, 255, 255, 0.9);
   padding: 15px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);

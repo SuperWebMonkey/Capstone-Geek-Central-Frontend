@@ -85,7 +85,7 @@ function RandomMovie() {
 
   return (
     // Retrieve a random quote
-    <div className="movie-section">
+    <div className="movie-section movie-background">
       {loading ? (
         <p>Loading Movie...</p> // Show loading while waiting for the movie data
       ) : error ? (
