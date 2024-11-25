@@ -9,6 +9,10 @@ put, post, and delete request on products.
 You can view the live version of the site at netlify:  
 [Live Site Link](Put Link Here)
 
+## Backend Link
+
+[GitHub Link to the Backend portion of Geek Central](https://github.com/SuperWebMonkey/Capstone-Geek-Central-Backend)
+
 # requirements
 
 1. an ide to run it (vscode highly recommended)
