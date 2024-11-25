@@ -1,7 +1,8 @@
 ## Geek Central Frontend
 
 Front facing portion of the website built with React and Vite. A mock tech store where users
-can buy different categories of items.
+can buy different categories of items. In the admin page, the admin can make a 
+put, post, and delete request on products.
 
 ## Live Site
 
@@ -28,6 +29,7 @@ You can view the live version of the site at netlify:
 - Select items
 - Items go to the cart
 - Buy the items from the cart
+- Admin page to make http request on the products
 
 ## Approach Taken
 
@@ -51,4 +53,7 @@ You can view the live version of the site at netlify:
 
 ## Issues that need to be fixed
 
-- TBD
+- Better dashboard
+- Login/Sign in functionality
+- Drop down menu for the cart 
+
