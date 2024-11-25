@@ -7,6 +7,7 @@ import Footer from "./components/Footer.jsx";
 import Cart from "./components/Cart.jsx";
 import AdminPage from "./pages/AdminPage.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
+import AboutPage from "./pages/AboutPage.jsx";
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -86,6 +87,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage addProduct={addProduct} />} />
         <Route path="/admin" element={<AdminPage />} />
+        <Route path="/about" element={<AboutPage />} />
         <Route
           path="/cart"
           element={<Cart cart={cart} removeProduct={removeProduct} />}

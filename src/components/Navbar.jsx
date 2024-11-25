@@ -22,6 +22,9 @@ function Navbar({ productCount }) {
       <Link to="/admin" className="page tech-shop">
         Admin
       </Link>
+      <Link to="/about" className="page tech-shop">
+        About
+      </Link>
       <Link to="/login" className="page login" style={linkStyle}>
         login
       </Link>
